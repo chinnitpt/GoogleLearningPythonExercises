@@ -11,7 +11,7 @@ Google's Python Class
 
 Read in the file specified on the command line.
 Do a simple split() on whitespace to obtain all the words in the file.
-Rather than read the file line by line, it's easier to read
+Rather than read the file line by line, it's easier to  read
 it into one giant string and split it once.
 
 Build a "mimic" dict that maps each word that appears in the file
@@ -46,15 +46,30 @@ import sys
 
 
 def mimic_dict(filename):
-  """Returns mimic dict mapping each word to list of words which follow it."""
-  # +++your code here+++
-  return
+    """Returns mimic dict mapping each word to list of words which follow it."""
+    # +++your code here+++
+    mimic_dictionary = {}
+    input_file = open(filename, "r");
+    lines = input_file.read();
+    words = lines.split()
+    prev = ''
+    for word in words:
+        if not prev in mimic_dictionary:
+            mimic_dictionary[prev] = [word]
+        else:
+            mimic_dictionary[prev].append(word)
+        prev = word
+    return mimic_dictionary
 
 
 def print_mimic(mimic_dict, word):
-  """Given mimic dict and start word, prints 200 random words."""
-  # +++your code here+++
-  return
+    """Given mimic dict and start word, prints 200 random words."""
+    # +++your code here+++
+    for unsigned_int_i in range(200):
+        print word,
+        if word in mimic_dict:
+            words = mimic_dict[word]
+            word = random.choice(words)
 
 
 # Provided main(), calls mimic_dict() and mimic()
